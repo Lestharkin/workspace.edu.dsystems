@@ -24,25 +24,7 @@ public class Main {
 
         SocketProcess server = new Server(serverSocket);
 
-        if (!server.bind()) {
-            System.out.println("Server bind failed");
-            return;
-        }
-
-        ArrayList<Object> dataRequest = (ArrayList<Object>) server.listen();
-
-        ArrayList<Object> dataResponse = new ArrayList<>();
-        dataResponse.add("Hello from server your request is: ");
-        dataRequest.forEach(dataResponse::add);
-        dataResponse.add(0);
-        server.response(dataResponse);
-
-        if (!server.close()) {
-            System.out.println("Server close failed");
-            return;
-        }
-
-        System.out.println("Java Server Socket closed");
+        
 
 
     }
