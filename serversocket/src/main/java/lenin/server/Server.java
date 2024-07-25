@@ -17,6 +17,15 @@ public class Server implements SocketProcess{
 
   @Override
   public boolean bind() {
+    try {
+			Socket socket = this.serverSocket.accept();
+			this.session = new Session(
+					socket);
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
   }
 
   @Override
