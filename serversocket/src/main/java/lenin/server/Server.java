@@ -64,6 +64,9 @@ public class Server implements SocketProcess{
 
   @Override
   public boolean close() {
+    boolean successful = this.session.close();
+		this.session = null;
+		return successful;
   }
   
 }
