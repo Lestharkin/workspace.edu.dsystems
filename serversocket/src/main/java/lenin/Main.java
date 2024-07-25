@@ -37,5 +37,12 @@ public class Main {
         dataResponse.add(0);
         server.response(dataResponse);
 
+        if (!server.close()) {
+            System.out.println("Server close failed");
+            return;
+        }
+
+        System.out.println("Java Server Socket closed");
+
     }
 }
