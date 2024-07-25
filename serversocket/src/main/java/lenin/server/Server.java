@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server implements SocketProcess{
+  ServerSocket serverSocket;
+	Session session;
+
+  public Server(ServerSocket serverSocket) {
+		this.serverSocket = serverSocket;
+		this.session = null;
+	} 
 
   @Override
   public boolean bind() {
