@@ -3,6 +3,7 @@ package lenin.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Server implements SocketProcess{
@@ -29,20 +30,43 @@ public class Server implements SocketProcess{
 
   @Override
   public List<Object> listen() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'listen'");
+    ArrayList<Object> dataList = new ArrayList<>();
+		boolean next = true;
+		Object data = null;
+		int flag = 1;
+		while (next) {
+			data = this.session.read();
+			if (data != null) {
+        try {
+          flag = (int) data;
+        } catch (Exception e) {
+          flag = 1;
+        }
+				try {					
+					next = flag != 0;
+					if (next) {
+						dataList.add(data);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+    }
+
+		return dataList;
   }
 
   @Override
   public boolean response(List<Object> data) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'response'");
+    data.forEach(d -> this.session.write(d));
+		return true;
   }
 
   @Override
   public boolean close() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'close'");
+    boolean successful = this.session.close();
+		this.session = null;
+		return successful;
   }
   
 }
