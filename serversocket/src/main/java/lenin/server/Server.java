@@ -1,19 +1,30 @@
 package lenin.server;
 
+import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.List;
 
 public class Server implements SocketProcess{
   private ServerSocket serverSocket;
+  Session session;
 
   public Server(ServerSocket serverSocket) {
     this.serverSocket = serverSocket;
+    this.session = null;
   }
 
   @Override
   public boolean bind() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'bind'");
+    try {
+			Socket socket = this.serverSocket.accept();
+			this.session = new Session(
+					socket);
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
   }
 
   @Override
