@@ -1,8 +1,14 @@
 package lenin.server;
 
+import java.net.ServerSocket;
 import java.util.List;
 
 public class Server implements SocketProcess{
+  private ServerSocket serverSocket;
+
+  public Server(ServerSocket serverSocket) {
+    this.serverSocket = serverSocket;
+  }
 
   @Override
   public boolean bind() {
