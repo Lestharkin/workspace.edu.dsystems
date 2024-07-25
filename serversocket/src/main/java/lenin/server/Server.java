@@ -58,6 +58,8 @@ public class Server implements SocketProcess{
 
   @Override
   public boolean response(List<Object> data) {
+    data.forEach(d -> this.session.write(d));
+		return true;
   }
 
   @Override
