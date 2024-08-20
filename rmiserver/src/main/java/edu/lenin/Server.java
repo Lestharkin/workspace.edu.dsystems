@@ -20,7 +20,7 @@ public class Server {
   public boolean deploy() {
     try {
       System.setProperty("java.rmi.server.hostname", ip);
-      RMI service = new Service();
+      RMIMSG service = new Service();
       LocateRegistry.createRegistry(Integer.parseInt(port));
       Naming.rebind(uri, service);
       return true;
