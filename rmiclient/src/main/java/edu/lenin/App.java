@@ -11,6 +11,6 @@ public class App
     {
         System.out.println( "Client" );
         Client client = new Client("localhost", "1802", "msg");
-        System.out.println(client.sayHello("Hello RMI!"));
+        System.out.println(client.sayHello("FISI"));
     }
 }
